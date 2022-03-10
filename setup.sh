@@ -1,5 +1,6 @@
 #!/bin/sh
 
+cd ~
 export PATH=/usr/local/bin:$PATH
 echo $PATH
 echo "$2" | sudo -S echo Workaround

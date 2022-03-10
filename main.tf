@@ -1,4 +1,4 @@
-resource "null_resource" "mac" {
+resource "null_resource" "mac-remote" {
 
   triggers = {
     always_run = "${timestamp()}"
@@ -21,5 +21,16 @@ resource "null_resource" "mac" {
       "chmod +x /tmp/setup.sh",
       "/tmp/setup.sh ${var.github-user} ${var.password}",
     ]
+  }
+}
+
+resource "null_resource" "mac-local" {
+
+  triggers = {
+    always_run = "${timestamp()}"
+  }
+
+  provisioner "local-exec" {
+    command = "./setup.sh ${var.github-user} ${var.password}"
   }
 }
